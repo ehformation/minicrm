@@ -22,6 +22,10 @@ switch ($uri) {
         require "../app/controllers/clientController.php";
         getClientById();
         break;
+    case '/clients/create-form' : 
+        require "../app/controllers/clientController.php";
+        createFormClients();
+        break;
     default:
         echo 'Erreur 404 - Page non trouvé';
 }

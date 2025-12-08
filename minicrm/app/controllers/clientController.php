@@ -12,3 +12,7 @@ function getClientById() {
     $client = getClientByIdFromDB($id);
     require '../app/views/client/show.php';
 }
+
+function createFormClients() {
+    require '../app/views/client/create-form.php';
+}
