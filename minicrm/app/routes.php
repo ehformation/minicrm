@@ -10,6 +10,8 @@ if($uri === '') {
     $uri = '/';
 }
 
+$uri = rtrim($uri, '/');
+
 switch ($uri) {
     case '/':
     case '/clients': 

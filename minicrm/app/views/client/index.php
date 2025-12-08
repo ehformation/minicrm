@@ -15,7 +15,7 @@
             <td><?= htmlspecialchars($c["email"]) ?></td>
             <td><?= htmlspecialchars($c["tel"]) ?></td>
             <td><?= htmlspecialchars($c["statut"]) ?></td>
-            <td></td>
+            <td><a href="<?= BASE_URL ?>/clients/show?id=<?= $c['id'] ?>">Voir</a></td>
         </tr>
     <?php endforeach; ?>    
 </table>
