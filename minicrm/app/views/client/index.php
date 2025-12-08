@@ -1,5 +1,7 @@
 <h1>Liste des clients</h1>
 
+<a href="<?= BASE_URL ?>/clients/create-form">Ajouter un client</a>
+
 <table>
     <tr>
         <th>Nom</th>
