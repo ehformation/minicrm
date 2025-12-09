@@ -4,17 +4,23 @@ require '../app/models/clientModel.php';
 
 function getClients() {
     $clients = getClientsFromDB();
-    require '../app/views/client/index.php';
+    $title = "Liste des clients";
+    $view = '../app/views/client/index.php';
+    require "../app/views/layout.php";
 }
 
 function getClientById() {
     $id = $_GET['id'];
     $client = getClientByIdFromDB($id);
-    require '../app/views/client/show.php';
+    $title = "Infos sur le client " . $client['nom'];
+    $view = '../app/views/client/show.php';
+    require "../app/views/layout.php";
 }
 
 function createFormClients() {
-    require '../app/views/client/create-form.php';
+    $title = "Ajouter un client";
+    $view = '../app/views/client/create-form.php';
+    require "../app/views/layout.php";
 }
 
 function storeClient() {
