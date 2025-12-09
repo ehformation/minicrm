@@ -2,7 +2,7 @@
 <h1 class="text-3xl font-bold mb-6">📋 Liste des clients</h1>
 
 <div class="mb-6">
-    <a href="<?= BASE_URL ?>/clients/create-form"
+    <a href="<?= url("/clients/create-form") ?>"
     class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
         ➕ Ajouter un client
     </a>
@@ -45,15 +45,15 @@
                     </span>
                 </td>
                 <td class="px-4 py-3">
-                    <a href="<?= BASE_URL ?>/clients/show?id=<?= $c['id'] ?>"
+                    <a href="<?= url("/clients/show?id=" . $c['id']); ?>"
                     class="text-blue-600 hover:text-blue-800 underline">
                         Voir →
                     </a>
-                    <a href="<?= BASE_URL ?>/clients/edit-form?id=<?= $c['id'] ?>"
+                    <a href="<?= url("/clients/edit-form?id=" . $c['id']); ?>"
                     class="text-yellow-600 hover:text-yellow-800 underline">
                         Modifier →
                     </a>
-                    <a href="<?= BASE_URL ?>/clients/delete?id=<?= $c['id'] ?>"
+                    <a href="<?= url("/clients/delete?id=" . $c['id']); ?>"
                     onclick="return confirm('Supprimer ce client ? Cette action est irréversible.');" class="text-red-600 hover:text-red-800 underline">
                         Supprimer
                     </a>

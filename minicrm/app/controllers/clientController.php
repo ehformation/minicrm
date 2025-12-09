@@ -2,12 +2,15 @@
 
 require '../app/models/clientModel.php';
 require '../app/models/noteModel.php';
+require '../app/helpers.php';
 
 function getClients() {
     $clients = getClientsFromDB();
     $title = "Liste des clients";
-    $view = '../app/views/client/index.php';
-    require "../app/views/layout.php";
+
+    render('client/index.php', [
+        'clients' => $clients
+    ], $title);
 }
 
 function getClientById() {
@@ -16,39 +19,40 @@ function getClientById() {
     $title = "Infos sur le client " . $client['nom'];
     $notes = getNotesByClientId($id);
 
-    $view = '../app/views/client/show.php';
-    require "../app/views/layout.php";
+    render('client/show.php', [
+        'client' => $client,
+        'notes' => $notes
+    ], $title);
+
 }
 
 function createFormClients() {
     $title = "Ajouter un client";
-    $view = '../app/views/client/create-form.php';
-    require "../app/views/layout.php";
+    render('client/create-form.php', [], $title);
 }
 
 function storeClient() {
     insertClientToBDD($_POST);
-    header("Location: " . BASE_URL . "/clients");
+    redirect("/clients");
 }
 
 function editFormClients() {
     $id = $_GET["id"];
     $client = getClientByIdFromDB($id);
-
     $title = "Modifier le client " . $client['nom'];
-    $view = '../app/views/client/edit-form.php';
-    require "../app/views/layout.php";
+
+    render('client/edit-form.php', [
+        'client' => $client
+    ], $title);
 }
 
 function updateClient() {
     updateClientToBDD($_POST);
-    header("Location: " . BASE_URL . "/clients");
-    exit;
+    redirect("/clients");
 }
 
 function deleteClient() {
     $id = $_GET["id"];
     deleteClientToBDD($id);
-    header("Location: " . BASE_URL . "/clients");
-    exit;
+    redirect("/clients");
 }

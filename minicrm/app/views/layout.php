@@ -11,13 +11,13 @@
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
 
             <div class="text-xl font-bold text-blue-600">
-                <a href="<?= BASE_URL ?>/clients">MiniCRM</a>
+                <a href="<?= url("/clients") ?>">MiniCRM</a>
             </div>
 
             <div class="flex items-center space-x-6">
-                <a href="<?= BASE_URL ?>/clients" class="text-gray-700 hover:text-blue-600 font-medium">Clients</a>
+                <a href="<?= url("/clients") ?>" class="text-gray-700 hover:text-blue-600 font-medium">Clients</a>
 
-                <a href="<?= BASE_URL ?>/clients/create-form"
+                <a href="<?= url("/clients/create-form") ?>"
                 class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                     ➕ Nouveau client
                 </a>

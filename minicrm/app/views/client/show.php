@@ -44,7 +44,7 @@
                             <?= htmlspecialchars($note['contenu']) ?>
                         </div>
                         <div class="text-sm text-red-500 mb-1">
-                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= BASE_URL ?>/notes/delete?id=<?= $note['id'] ?>">Supprimer</a> 
+                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= url("/notes/delete?id=" . $note['id']) ?>">Supprimer</a> 
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -57,7 +57,7 @@
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold mb-4">➕ Ajouter une note</h3>
 
-        <form action="<?= BASE_URL ?>/notes/store" method="POST" class="space-y-4">
+        <form action="<?= url("/notes/store") ?>" method="POST" class="space-y-4">
             <input type="hidden" name="client_id" value="<?= $client['id'] ?>">
 
             <textarea name="contenu"
