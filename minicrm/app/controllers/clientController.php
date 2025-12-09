@@ -31,3 +31,16 @@ function storeClient() {
     header("Location: " . BASE_URL . "/clients");
 }
 
+function editFormClients() {
+    $id = $_GET["id"];
+    $client = getClientByIdFromDB($id);
+
+    $title = "Modifier le client " . $client['nom'];
+    $view = '../app/views/client/edit-form.php';
+    require "../app/views/layout.php";
+}
+
+function updateClient() {
+    updateClientToBDD($_POST);
+    header("Location: " . BASE_URL . "/clients");
+}

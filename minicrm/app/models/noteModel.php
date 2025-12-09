@@ -19,3 +19,22 @@ function insertNoteToBDD($data){
         $data['contenu'],
     ]);
 }
+
+function updateClientToBDD($data){
+       
+    $pdo = getPDO();
+    $query = $pdo->prepare("
+        UPDATE clients 
+        SET nom = ?, email = ?, tel = ?, statut = ?, notes = ?, updated_at = NOW()
+        WHERE id = ?
+    ");
+
+    return $query->execute([
+        $data['nom'],
+        $data['email'],
+        $data['tel'],
+        $data['statut'],
+        $data['notes'],
+        $data['client_id']
+    ]);
+}

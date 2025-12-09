@@ -49,6 +49,10 @@
                     class="text-blue-600 hover:text-blue-800 underline">
                         Voir →
                     </a>
+                    <a href="<?= BASE_URL ?>/clients/edit-form?id=<?= $c['id'] ?>"
+                    class="text-orange-600 hover:text-orange-800 underline">
+                        Modifier →
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>

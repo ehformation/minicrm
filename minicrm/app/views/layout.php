@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
 
             <div class="text-xl font-bold text-blue-600">
-                MiniCRM
+                <a href="<?= BASE_URL ?>/clients">MiniCRM</a>
             </div>
 
             <div class="flex items-center space-x-6">
