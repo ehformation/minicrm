@@ -38,3 +38,10 @@ function updateClientToBDD($data){
         $data['client_id']
     ]);
 }
+
+function deleteNoteToBDD($id)
+{
+    $pdo = getPDO();
+    $query = $pdo->prepare("DELETE FROM client_notes WHERE id = ?");
+    return $query->execute([$id]);
+}

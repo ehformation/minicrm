@@ -46,6 +46,10 @@ switch ($uri) {
         require "../app/controllers/noteController.php";
         storeNote();
         break;
+    case '/notes/delete' : 
+        require "../app/controllers/noteController.php";
+        deleteNote();
+        break;
     default:
         echo 'Erreur 404 - Page non trouvé';
 }

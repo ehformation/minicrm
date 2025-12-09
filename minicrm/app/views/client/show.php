@@ -43,6 +43,9 @@
                         <div class="text-gray-700">
                             <?= htmlspecialchars($note['contenu']) ?>
                         </div>
+                        <div class="text-sm text-red-500 mb-1">
+                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= BASE_URL ?>/notes/delete?id=<?= $note['id'] ?>">Supprimer</a> 
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ul>

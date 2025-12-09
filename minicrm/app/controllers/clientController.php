@@ -43,6 +43,7 @@ function editFormClients() {
 function updateClient() {
     updateClientToBDD($_POST);
     header("Location: " . BASE_URL . "/clients");
+    exit;
 }
 
 function deleteClient() {
