@@ -1,6 +1,6 @@
 <h1>Ajouter un Client</h1>
 
-<form action="" method="POST">
+<form action="<?= BASE_URL ?>/clients/store" method="POST">
     Nom: <input type="text" name="nom"><br><br>
     Email: <input type="email" name="email"><br><br>
     Téléphone: <input type="text" name="tel"><br><br>

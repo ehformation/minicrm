@@ -13,3 +13,18 @@ function getClientByIdFromDB($id){
     $query->execute([$id]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
+
+function insertClientToBDD($data){
+    $pdo = getPDO();
+
+    $query = $pdo->prepare("INSERT INTO clients (nom, email, tel, statut, notes, created_at, updated_at)
+                           VALUES (?, ?, ?, ?, ?, NOW(), NOW())");
+    
+    return $query->execute([
+        $data['nom'],
+        $data['email'],
+        $data['tel'],
+        $data['statut'],
+        $data['notes']
+    ]);
+}

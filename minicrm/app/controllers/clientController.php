@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../app/models/clientModel.php';
+require '../app/models/clientModel.php';
 
 function getClients() {
     $clients = getClientsFromDB();
@@ -16,3 +16,9 @@ function getClientById() {
 function createFormClients() {
     require '../app/views/client/create-form.php';
 }
+
+function storeClient() {
+    insertClientToBDD($_POST);
+    header("Location: " . BASE_URL . "/clients");
+}
+
