@@ -1,6 +1,7 @@
 <?php 
 
 require '../app/models/clientModel.php';
+require '../app/models/noteModel.php';
 
 function getClients() {
     $clients = getClientsFromDB();
@@ -13,6 +14,8 @@ function getClientById() {
     $id = $_GET['id'];
     $client = getClientByIdFromDB($id);
     $title = "Infos sur le client " . $client['nom'];
+    $notes = getNotesByClientId($id);
+
     $view = '../app/views/client/show.php';
     require "../app/views/layout.php";
 }

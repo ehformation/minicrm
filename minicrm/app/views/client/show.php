@@ -27,6 +27,30 @@
         </p>
     </div>
 
+    <!-- Timeline de note  -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">🕓 Timeline / Notes</h2>
+
+        <?php if (count($notes) === 0): ?>
+            <p class="text-gray-500">Aucune note pour ce client.</p>
+        <?php else : ?>
+            <ul class="space-y-3">
+                <?php foreach ($notes as $note): ?>
+                    <li class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <div class="text-sm text-gray-500 mb-1">
+                            <?= $note['created_at'] ?>
+                        </div>
+                        <div class="text-gray-700">
+                            <?= htmlspecialchars($note['contenu']) ?>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif;?>
+
+    </div>
+
+
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold mb-4">➕ Ajouter une note</h3>
 
