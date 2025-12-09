@@ -29,6 +29,9 @@ switch ($uri) {
     case '/clients/store' : 
         require "../app/controllers/clientController.php";
         storeClient();
+    case '/notes/store' : 
+        require "../app/controllers/noteController.php";
+        storeNote();
     default:
         echo 'Erreur 404 - Page non trouvé';
 }

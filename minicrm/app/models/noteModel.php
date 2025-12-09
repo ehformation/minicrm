@@ -7,3 +7,15 @@ function getNotesByClientId($client_id){
     $query->execute([$client_id]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function insertNoteToBDD($data){
+    $pdo = getPDO();
+
+    $query = $pdo->prepare("INSERT INTO client_notes (client_id, contenu, created_at)
+                           VALUES (?, ?, NOW())");
+    
+    return $query->execute([
+        $data['client_id'],
+        $data['contenu'],
+    ]);
+}
