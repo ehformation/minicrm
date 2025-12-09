@@ -50,8 +50,12 @@
                         Voir →
                     </a>
                     <a href="<?= BASE_URL ?>/clients/edit-form?id=<?= $c['id'] ?>"
-                    class="text-orange-600 hover:text-orange-800 underline">
+                    class="text-yellow-600 hover:text-yellow-800 underline">
                         Modifier →
+                    </a>
+                    <a href="<?= BASE_URL ?>/clients/delete?id=<?= $c['id'] ?>"
+                    onclick="return confirm('Supprimer ce client ? Cette action est irréversible.');" class="text-red-600 hover:text-red-800 underline">
+                        Supprimer
                     </a>
                 </td>
             </tr>

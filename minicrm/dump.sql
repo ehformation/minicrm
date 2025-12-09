@@ -49,3 +49,12 @@ INSERT INTO client_notes (client_id, contenu, created_at) VALUES
 
 (7, 'Livraison finale effectuée.', NOW()),
 (7, 'Facture réglée par le client.', NOW());
+
+ALTER TABLE client_notes
+DROP FOREIGN KEY client_notes_ibfk_1;
+
+ALTER TABLE client_notes
+ADD CONSTRAINT fk_client_notes_client
+FOREIGN KEY (client_id)
+REFERENCES clients(id)
+ON DELETE CASCADE;

@@ -44,3 +44,10 @@ function updateClient() {
     updateClientToBDD($_POST);
     header("Location: " . BASE_URL . "/clients");
 }
+
+function deleteClient() {
+    $id = $_GET["id"];
+    deleteClientToBDD($id);
+    header("Location: " . BASE_URL . "/clients");
+    exit;
+}

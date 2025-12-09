@@ -38,6 +38,10 @@ switch ($uri) {
         require "../app/controllers/clientController.php";
         updateClient();
         break;
+    case '/clients/delete':
+        require "../app/controllers/clientController.php";
+        deleteClient();
+        break;
     case '/notes/store' : 
         require "../app/controllers/noteController.php";
         storeNote();

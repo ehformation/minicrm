@@ -28,3 +28,10 @@ function insertClientToBDD($data){
         $data['notes']
     ]);
 }
+
+function deleteClientToBDD($id)
+{
+    $pdo = getPDO();
+    $query = $pdo->prepare("DELETE FROM clients WHERE id = ?");
+    return $query->execute([$id]);
+}
