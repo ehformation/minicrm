@@ -36,7 +36,7 @@ function storeClient() {
     $errors = validate($_POST, [
         'nom' => [ 'required' => true, 'min' => 2 ],
         'email' => [ 'required' => true, 'email' => true ],
-        'tel' => [ 'required' => true],
+        'tel' => [ 'required' => true, 'tel' => true, 'max' => 30],
         'notes' => ['min' => 5 ],
     ]);
 

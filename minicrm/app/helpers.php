@@ -37,6 +37,27 @@ function validate($data, $rules) {
                 $errors[] = "Le champs $field doit faire au moins $option caractères";
             }
 
+            if($rule === 'max' && strlen($value) > $option ) {
+                $errors[] = "Le champs $field doit faire au maximum $option caractères";
+            }
+
+            if($rule === 'tel' && $value !== '' ) {
+                $prefix = ['01', '02', '03', '04', '05', '06', '07', '09'];
+
+                $start = false;
+                foreach($prefix as $p) {
+                    if(str_starts_with($value, $p)){
+                        $start = true;
+                        break;
+                    }
+                }
+
+                if(!$start) {
+                    $errors[] = "Le champs $field est invalide";
+                }
+                
+            }
+
         }
 
     }
