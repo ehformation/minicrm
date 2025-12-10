@@ -17,7 +17,7 @@ function url($path) {
     return BASE_URL . $path;
 }
 
-function validation() {
+function validate() {
     return;
 }
 

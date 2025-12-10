@@ -32,6 +32,14 @@ function createFormClients() {
 }
 
 function storeClient() {
+
+    $errors = validate($_POST, [
+        'nom' => [ 'required' => true, 'min' => 2 ],
+        'email' => [ 'required' => true, 'email' => true ],
+        'tel' => [ 'required' => true],
+        'notes' => ['min' => 5 ],
+    ]);
+
     insertClientToBDD($_POST);
     redirect("/clients");
 }
