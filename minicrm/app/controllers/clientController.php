@@ -40,7 +40,14 @@ function storeClient() {
         'notes' => ['min' => 5 ],
     ]);
 
-    insertClientToBDD($_POST);
+    displayError($errors, "/clients/create-form");
+
+    if(!insertClientToBDD($_POST)) {
+        notification('error', 'Une erreur est survenue');
+        redirect("/clients/create-form");
+    }
+
+    notification('success', 'Le client a bien été ajouté');
     redirect("/clients");
 }
 

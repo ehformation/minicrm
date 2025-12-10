@@ -17,8 +17,31 @@ function url($path) {
     return BASE_URL . $path;
 }
 
-function validate() {
-    return;
+function validate($data, $rules) {
+
+    $errors = [];
+
+    foreach ($rules as $field => $ruleSet) {
+        $value = trim($data[$field] ?? '');
+
+        foreach($ruleSet as $rule => $option){
+            if($rule === 'required' && $value === ''){
+                $errors[] = "Le champs $field est obligatoire";
+            }
+
+            if($rule === 'email' &&  $value !== '' && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Le champs $field doit etre un email valide";
+            }
+
+            if($rule === 'min' && strlen($value) < $option ) {
+                $errors[] = "Le champs $field doit faire au moins $option caractères";
+            }
+
+        }
+
+    }
+
+    return $errors;
 }
 
 function notification($type, $message) {
@@ -55,4 +78,17 @@ function displayNotification(){
 
     unset($_SESSION['notification']);
 
+}
+
+function displayError($errors, $path) {
+    if(!empty($errors)) {
+        $message = "";
+        
+        foreach ($errors as $field => $msg) {
+            $message .= $msg . "<br>";
+        }
+
+        notification('error', $message);
+        redirect($path);
+    }
 }

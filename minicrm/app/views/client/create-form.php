@@ -5,7 +5,7 @@
 
         <div>
             <label class="block text-gray-700 font-medium">Nom</label>
-            <input type="text" name="nom"
+            <input type="text" name="nom" 
                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-200">
         </div>
 
