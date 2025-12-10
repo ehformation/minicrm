@@ -35,3 +35,22 @@ function deleteClientToBDD($id)
     $query = $pdo->prepare("DELETE FROM clients WHERE id = ?");
     return $query->execute([$id]);
 }
+
+function updateClientToBDD($data){
+       
+    $pdo = getPDO();
+    $query = $pdo->prepare("
+        UPDATE clients 
+        SET nom = ?, email = ?, tel = ?, statut = ?, notes = ?, updated_at = NOW()
+        WHERE id = ?
+    ");
+
+    return $query->execute([
+        $data['nom'],
+        $data['email'],
+        $data['tel'],
+        $data['statut'],
+        $data['notes'],
+        $data['client_id']
+    ]);
+}

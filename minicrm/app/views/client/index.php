@@ -48,11 +48,11 @@
                     <a href="<?= url("/clients/show?id=" . $c['id']); ?>"
                     class="text-blue-600 hover:text-blue-800 underline">
                         Voir →
-                    </a>
+                    </a><br>
                     <a href="<?= url("/clients/edit-form?id=" . $c['id']); ?>"
                     class="text-yellow-600 hover:text-yellow-800 underline">
                         Modifier →
-                    </a>
+                    </a><br>
                     <a href="<?= url("/clients/delete?id=" . $c['id']); ?>"
                     onclick="return confirm('Supprimer ce client ? Cette action est irréversible.');" class="text-red-600 hover:text-red-800 underline">
                         Supprimer
