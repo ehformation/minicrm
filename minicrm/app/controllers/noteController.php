@@ -2,14 +2,41 @@
 require_once "../app/models/noteModel.php";
 
 function storeNote() {
-    insertNoteToBDD($_POST);
+    $errors = validate($_POST, [
+        'contenu' => [ 'required' => true],
+        'client_id' => [ 'required' => true],
+    ]);
+
+    displayError($errors, "/clients/edit-form");
+
     $path = "/clients/show?id=" . $_POST['client_id'];
+
+    if(!insertNoteToBDD($_POST)){
+        notification('error', 'Une erreur est survenue');
+        redirect($path);
+    }
+
+    notification('success', 'La note a bien été crée');
     redirect($path);
 }
 
 function deleteNote() {
+    $errors = validate($_GET, [
+        'id' => [ 'required' => true],
+        'client_id' => [ 'required' => true],
+    ]);
+
+    displayError($errors, "/clients");
+
     $id = $_GET["id"];
-    deleteNoteToBDD($id);
-    $path = "/clients/show?id=" . $_POST['client_id'];
+    $client_id = $_GET["client_id"];
+    $path = "/clients/show?id=$client_id";
+
+    if(!deleteNoteToBDD($id)){
+        notification('error', 'Une erreur est survenue');
+        redirect($path);
+    }
+
+    notification('success', 'La note a bien été supprimé');
     redirect($path);
 }

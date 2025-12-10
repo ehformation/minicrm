@@ -2,7 +2,7 @@
 
 require '../app/models/clientModel.php';
 require '../app/models/noteModel.php';
-require '../app/helpers.php';
+
 
 function getClients() {
     $clients = getClientsFromDB();
@@ -62,12 +62,41 @@ function editFormClients() {
 }
 
 function updateClient() {
-    updateClientToBDD($_POST);
+    $errors = validate($_POST, [
+        'nom' => [ 'required' => true, 'min' => 2 ],
+        'email' => [ 'required' => true, 'email' => true ],
+        'tel' => [ 'required' => true],
+        'notes' => ['min' => 5 ],
+        'client_id' => [ 'required' => true],
+    ]);
+
+    displayError($errors, "/clients/edit-form");
+
+    if(!updateClientToBDD($_POST)){
+        notification('error', 'Une erreur est survenue');
+        redirect("/clients/edit-form");
+    }
+
+    notification('success', 'Le client a bien été modifié');
     redirect("/clients");
 }
 
 function deleteClient() {
+    
+
+    $errors = validate($_GET, [
+        'id' => [ 'required' => true],
+    ]);
+
+    displayError($errors, "/clients");
+
     $id = $_GET["id"];
-    deleteClientToBDD($id);
+
+    if(!deleteClientToBDD($id)){
+        notification('error', 'Une erreur est survenue');
+        redirect("/clients");
+    }
+
+    notification('success', 'Le client a bien été supprimé');
     redirect("/clients");
 }
