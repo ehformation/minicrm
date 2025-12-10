@@ -50,6 +50,10 @@ switch ($uri) {
         require "../app/controllers/noteController.php";
         deleteNote();
         break;
+    case '/rdv/store' : 
+        require "../app/controllers/rdvController.php";
+        storeRDV();
+        break;
     default:
         echo 'Erreur 404 - Page non trouvé';
 }

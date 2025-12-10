@@ -70,10 +70,47 @@
         </form>
     </div>
 
-    <!-- Affichage des rendez vous -->
-                    
+    <!-- Affichage des rendez vous (variable $rdvs) -->
+    <h2 class="text-2xl font-semibold mt-8 mb-4">📆 Rendez-vous</h2>
+
+    <?php if (count($rdvs) === 0): ?>
+        <p class="text-gray-500">Aucun rendez-vous pour ce client.</p>
+    <?php else : ?>
+        <ul class="space-y-3 mb-6">
+            <?php foreach ($rdvs as $rdv): ?>
+                <li class="bg-blue-50 border border-blue-200 p-4 rounded">
+                    <div class="font-medium text-blue-700">
+                        <?= date("d/m/Y H:i", strtotime($rdv['date'])); ?>
+                        <div class="text-gray-700">
+                            <?= htmlspecialchars($rdv['description']) ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
     
     <!-- Ajout des rendez vous -->
+    <h3 class="text-xl font-semibold mb-3">➕ Ajouter un rendez-vous</h3>
+
+    <form action="<?= url("/rdv/store") ?>" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
+        <input type="hidden" name="client_id" value="<?= $client['id'] ?>">
+        <div>
+            <label class="block font-medium">Date & heure</label>
+            <input type="datetime-local" name="date"
+                class="w-full border rounded px-3 py-2">
+        </div>
+
+        <div>
+            <label class="block font-medium">Description</label>
+            <textarea name="description"
+                    class="w-full border rounded px-3 py-2 h-24"></textarea>
+        </div>
+
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Enregistrer le RDV
+        </button>
+    </form>
 
     <div class="mt-6">
         <a href="/clients" class="text-blue-600 underline hover:text-blue-800">← Retour à la liste</a>

@@ -2,6 +2,7 @@
 
 require '../app/models/clientModel.php';
 require '../app/models/noteModel.php';
+require '../app/models/rdvModel.php';
 
 
 function getClients() {
