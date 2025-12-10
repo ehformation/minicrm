@@ -58,3 +58,25 @@ ADD CONSTRAINT fk_client_notes_client
 FOREIGN KEY (client_id)
 REFERENCES clients(id)
 ON DELETE CASCADE;
+
+
+CREATE TABLE rdv (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NOT NULL,
+    date DATETIME NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT NOW(),
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
+);
+
+INSERT INTO rdv (client_id, date, description) VALUES
+(1, '2025-01-15 10:00:00', 'Premier contact – découverte du projet.'),
+(1, '2025-01-22 14:30:00', 'Présentation du devis et options.'),
+(2, '2025-01-18 09:00:00', 'Suivi du projet site vitrine.'),
+(2, '2025-01-27 16:00:00', 'Point technique sur l’intégration.'),
+(3, '2025-01-19 11:15:00', 'Réunion sur le cahier des charges.'),
+(3, '2025-01-29 15:45:00', 'Validation du design final.'),
+(4, '2025-01-20 13:00:00', 'Support et maintenance mensuelle.'),
+(4, '2025-01-30 10:30:00', 'Analyse SEO et performance.'),
+(5, '2025-01-23 17:00:00', 'Kick-off du projet e-commerce.'),
+(5, '2025-01-31 09:45:00', 'Avancement sur la gestion des produits.');

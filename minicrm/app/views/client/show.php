@@ -53,7 +53,7 @@
 
     </div>
 
-
+    <!-- Ajout de note  -->
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold mb-4">➕ Ajouter une note</h3>
 
@@ -69,6 +69,11 @@
             </button>
         </form>
     </div>
+
+    <!-- Affichage des rendez vous -->
+                    
+    
+    <!-- Ajout des rendez vous -->
 
     <div class="mt-6">
         <a href="/clients" class="text-blue-600 underline hover:text-blue-800">← Retour à la liste</a>

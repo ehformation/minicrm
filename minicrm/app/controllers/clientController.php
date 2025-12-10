@@ -18,10 +18,12 @@ function getClientById() {
     $client = getClientByIdFromDB($id);
     $title = "Infos sur le client " . $client['nom'];
     $notes = getNotesByClientId($id);
+    $rdvs = getRDVByClientId($id);
 
     render('client/show.php', [
         'client' => $client,
-        'notes' => $notes
+        'notes' => $notes,
+        'rdvs' => $rdvs
     ], $title);
 
 }
