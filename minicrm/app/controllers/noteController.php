@@ -3,7 +3,7 @@ require_once "../app/models/noteModel.php";
 
 function storeNote() {
     $errors = validate($_POST, [
-        'contenu' => [ 'required' => true],
+        'contenu' => [ 'required' => true, 'min' => 5],
         'client_id' => [ 'required' => true],
     ]);
 
