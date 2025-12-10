@@ -25,6 +25,9 @@
 
         </div>
     </nav>
+    <div class="max-w-4xl mx-auto mt-4">
+        <?php displayNotification(); ?>
+    </div>
     <?php require $view; ?>
     <footer class="mt-10 py-4 bg-blue-50 border-t border-blue-200 text-center text-blue-700 text-sm">
         <p>© <?= date('Y') ?> MiniCRM — Gestion simplifiée des clients</p>
