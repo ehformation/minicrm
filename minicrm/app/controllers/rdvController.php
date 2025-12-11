@@ -55,4 +55,25 @@ class RdvController {
         Helpers::notification('success', 'Le rendez-vous a bien été crée');
         Helpers::redirect($path);
     }
+
+    public function calendar() {
+
+        $rdvModel = new RdvModel();
+        $rdvs = $rdvModel->getAllByMonth();
+
+        $month = date("m");
+        $year  = date("Y");
+        $firstDay = strtotime("$year-$month-01");
+
+        View::render("rdv/calendar", [
+            'month' => $month,
+            'year' => $year,
+            'firstDay' => $firstDay,
+            'daysInMonth'=> date("t", $firstDay),
+            'startWeekDay' => date("N", $firstDay),
+            'title' => "Calendrier des RDVs",
+            'rdvs' => $rdvs
+        ]);
+
+    }
 }
