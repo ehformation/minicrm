@@ -1,4 +1,5 @@
 <?php
+
 class NoteModel extends Database
 {
     protected $table = "client_notes";

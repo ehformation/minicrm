@@ -1,4 +1,5 @@
 <?php
+
 class RdvModel extends Database {
 
     protected $table = "rdv";

@@ -1,5 +1,6 @@
 <?php 
 
+$router->get("/", [ClientController::class, "index"]);
 $router->get("/clients", [ClientController::class, "index"]);
 $router->get("/clients/show/{id}", [ClientController::class, "show"]);
 $router->get("/clients/create-form", [ClientController::class, "create"]);

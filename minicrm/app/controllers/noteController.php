@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class NoteController {
     public function store() {
         $errors = Helpers::validate($_POST, [
