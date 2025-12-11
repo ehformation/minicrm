@@ -14,13 +14,13 @@ class NoteModel extends Database
         );
     }
 
-    public function delete($id)
+    public function deleteByClientId($client_id)
     {
-        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+        return $this->query("DELETE FROM {$this->table} WHERE client_id = ?", [$client_id]);
     }
 
     function getByClientId($client_id){
-        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$id]);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$client_id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

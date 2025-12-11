@@ -4,8 +4,8 @@ class RdvModel extends Database {
     protected $table = "rdv";
 
     function getByClientId($client_id){
-        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$id]);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$client_id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function store($data){

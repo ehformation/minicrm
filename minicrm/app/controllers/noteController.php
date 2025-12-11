@@ -10,9 +10,9 @@ class NoteController {
             'client_id' => [ 'required' => true],
         ]);
 
-        Helpers::displayError($errors, "/clients/edit-form");
-
         $path = "/clients/show/" . $_POST['client_id'];
+
+        Helpers::displayError($errors, $path);
 
         $noteModel = new NoteModel();
         $insert = $noteModel->store($_POST);
@@ -26,20 +26,12 @@ class NoteController {
         Helpers::redirect($path);
     }
 
-    function delete() {
-        $errors = Helpers::validate($_GET, [
-            'id' => [ 'required' => true],
-            'client_id' => [ 'required' => true],
-        ]);
+    function delete($client_id) {
 
-        Helpers::displayError($errors, "/clients");
-
-        $id = $_GET["id"];
-        $client_id = $_GET["client_id"];
         $path = "/clients/show/$client_id";
 
         $noteModel = new NoteModel();
-        $delete = $noteModel->delete($id);
+        $delete = $noteModel->deleteByClientId($client_id);
 
         if(!$delete){
             Helpers::notification('error', 'Une erreur est survenue');

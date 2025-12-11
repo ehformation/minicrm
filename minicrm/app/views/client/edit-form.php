@@ -1,7 +1,7 @@
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6">✏️ Modifier le client</h1>
 
-    <form action="<?= $helpers->url("/clients/update{$client['id']}") ?>" method="POST" class="space-y-4">
+    <form action="<?= $helpers->url("/clients/update/{$client['id']}") ?>" method="POST" class="space-y-4">
 
         <div>
             <label class="block text-gray-700 font-medium">Nom</label>

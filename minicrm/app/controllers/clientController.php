@@ -46,14 +46,14 @@ class ClientController
             'notes' => ['min' => 5],
         ]);
 
-        Helpers::displayError($errors, "/clients/create");
+        Helpers::displayError($errors, "/clients/create-form");
 
         $clientModel = new ClientModel();
         $insert = $clientModel->store($_POST);
 
         if (!$insert) {
             Helpers::notification('error', "Une erreur est survenue lors de l'ajout du client.");
-            Helpers::redirect("/clients/create");
+            Helpers::redirect("/clients/create-form");
             return;
         }
 
