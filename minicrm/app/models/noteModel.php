@@ -1,5 +1,4 @@
 <?php
-require_once 'database.php';
 
 function getNotesByClientId($client_id){
     $pdo = getPDO();

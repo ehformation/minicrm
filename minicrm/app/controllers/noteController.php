@@ -1,5 +1,4 @@
 <?php
-require_once "../app/models/noteModel.php";
 
 function storeNote() {
     $errors = validate($_POST, [

@@ -1,7 +1,5 @@
 <?php 
 
-require '../app/models/rdvModel.php';
-
 function storeRDV() {
     $errors = validate($_POST, [
         'date' => [ 'required' => true],
