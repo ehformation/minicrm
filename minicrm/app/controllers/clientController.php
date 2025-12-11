@@ -49,8 +49,7 @@ class ClientController
         Helpers::displayError($errors, "/clients/create");
 
         $clientModel = new ClientModel();
-
-        $insert = $clientModel->insert($_POST);
+        $insert = $clientModel->store($_POST);
 
         if (!$insert) {
             Helpers::notification('error', "Une erreur est survenue lors de l'ajout du client.");
