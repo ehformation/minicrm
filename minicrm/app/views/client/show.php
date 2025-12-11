@@ -44,7 +44,7 @@
                             <?= htmlspecialchars($note['contenu']) ?>
                         </div>
                         <div class="text-sm text-red-500 mb-1">
-                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= url("/notes/delete?id=" . $note['id'] . "&client_id=" . $client['id']) ?>">Supprimer</a> 
+                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= $helpers->url("/notes/delete?id=" . $note['id'] . "&client_id=" . $client['id']) ?>">Supprimer</a> 
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -57,7 +57,7 @@
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold mb-4">➕ Ajouter une note</h3>
 
-        <form action="<?= url("/notes/store") ?>" method="POST" class="space-y-4">
+        <form action="<?= $helpers->url("/notes/store") ?>" method="POST" class="space-y-4">
             <input type="hidden" name="client_id" value="<?= $client['id'] ?>">
 
             <textarea name="contenu"
@@ -93,7 +93,7 @@
     <!-- Ajout des rendez vous -->
     <h3 class="text-xl font-semibold mb-3">➕ Ajouter un rendez-vous</h3>
 
-    <form action="<?= url("/rdv/store") ?>" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
+    <form action="<?= $helpers->url("/rdv/store") ?>" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
         <input type="hidden" name="client_id" value="<?= $client['id'] ?>">
         <div>
             <label class="block font-medium">Date & heure</label>

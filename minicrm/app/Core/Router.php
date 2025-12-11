@@ -3,9 +3,7 @@
 class Router {
 
     private $routes = [
-        'GET' => [
-            "/clients" => [ClientController::class, "index"]
-        ],
+        'GET' => [],
         'POST' => [],
     ];
 
@@ -21,7 +19,7 @@ class Router {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri    = $_SERVER['PATH_INFO'] ?? '/';
 
-        foreach($this->routes[$method] as $patern => $calback) {
+        foreach($this->routes[$method] as $pattern => $callback) {
             
             $regex = preg_replace('#\{([a-zA-Z_]+)\}#', '([0-9a-zA-Z-_]+)', $pattern);
             $regex = "#^". $regex . "$#";

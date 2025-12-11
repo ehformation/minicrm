@@ -1,6 +1,6 @@
 <?php 
 
-// $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// $uri = parse_$helpers->url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // if(strpos($uri, 'public/index.php') !== false) {
 //     $uri = substr($uri, strpos($uri, 'public/index.php') + strlen('public/index.php'));

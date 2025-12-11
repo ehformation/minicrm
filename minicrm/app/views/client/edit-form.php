@@ -1,7 +1,7 @@
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6">✏️ Modifier le client</h1>
 
-    <form action="<?= url("/clients/update") ?>" method="POST" class="space-y-4">
+    <form action="<?= $helpers->url("/clients/update") ?>" method="POST" class="space-y-4">
 
         <input type="hidden" name="client_id" value="<?= $client['id'] ?>">
 
@@ -54,7 +54,7 @@
     </form>
 
     <div class="mt-4">
-        <a href="<?= url("/clients") ?>" class="text-blue-600 underline">
+        <a href="<?= $helpers->url("/clients") ?>" class="text-blue-600 underline">
             ← Retour
         </a>
     </div>
