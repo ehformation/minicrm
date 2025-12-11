@@ -6,17 +6,17 @@ class ClientModel extends Database
 
     public function getById($id)
     {
-        $stmt = $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $query = $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getAll()
     {
-        $stmt = $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert($data)
+    public function store($data)
     {
         return $this->query(
             "INSERT INTO {$this->table} (nom, email, tel, statut, notes, created_at, updated_at)

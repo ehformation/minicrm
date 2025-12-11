@@ -1,33 +1,31 @@
 <?php
+class RdvModel extends Database {
 
-function getRDVByClientId($client_id) {
-    $pdo = getPDO();
-    $query = $pdo->prepare("SELECT * FROM rdv WHERE client_id = ? ORDER BY date ASC");
-    $query->execute([$client_id]);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-}
+    protected $table = "rdv";
 
-function insertRDVToBDD($data) {
-    $pdo = getPDO();
-    $stmt = $pdo->prepare("INSERT INTO rdv (client_id, date, description) VALUES (?, ?, ?)");
-    return $stmt->execute([$data['client_id'], $data['date'], $data['description']]);
-}
+    function getByClientId($client_id){
+        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 
-function rdvExists($date) {
-    $pdo = getPDO();
+    public function store($data){
+        return $this->query(
+            "INSERT INTO {$this->table} (client_id, date, description) VALUES (?, ?, ?)",
+            [
+                $data['client_id'], 
+                $data['date'], 
+                $data['description']
+            ]
+        );
+    }
 
-    $start = $date;
-    $end   = date("Y-m-d H:i:s", strtotime($date . " +1 hour"));
+    public function exist($date) {
+        $start = $date;
+        $end   = date("Y-m-d H:i:s", strtotime($date . " +1 hour"));
 
-    $query = $pdo->prepare("
-        SELECT COUNT(*) 
-        FROM rdv
-        WHERE 
-            date < ?
-        AND 
-            DATE_ADD(date, INTERVAL 1 HOUR) > ?
-    ");
+        $query = $this->query("SELECT COUNT(*) FROM rdv WHERE date < ? AND DATE_ADD(date, INTERVAL 1 HOUR) > ?", [$end, $start]);
 
-    $query->execute([$end, $start]);
-    return $query->fetchColumn() > 0;
+        return $query->fetchColumn() > 0;
+    }
+
 }

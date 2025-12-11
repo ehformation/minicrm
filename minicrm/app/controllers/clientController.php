@@ -16,11 +16,12 @@ class ClientController
     public function show($id) {
 
         $clientModel = new ClientModel();
-        $client = $clientModel->getById($id);
+        $noteModel = new NoteModel();
+        $rdvModel = new RdvModel();
 
-        //@fix
-        $notes = getNotesByClientId($id);
-        $rdvs = getRDVByClientId($id);
+        $client = $clientModel->getById($id);
+        $notes = $noteModel->getByClientId($id);
+        $rdvs = $rdvModel->getByClientId($id);
 
         View::render('client/show', [
             'title' => "Infos sur le client " . $client['nom'],
@@ -38,7 +39,6 @@ class ClientController
 
     public function store()
     {
-        // 1. Validation des données
         $errors = Helpers::validate($_POST, [
             'nom'   => ['required' => true, 'min' => 2],
             'email' => ['required' => true, 'email' => true],
@@ -46,10 +46,8 @@ class ClientController
             'notes' => ['min' => 5],
         ]);
 
-        // 2. Si erreurs → affichage + redirection
         Helpers::displayError($errors, "/clients/create");
 
-        // 3. Insertion en BDD
         $clientModel = new ClientModel();
 
         $insert = $clientModel->insert($_POST);
@@ -60,7 +58,6 @@ class ClientController
             return;
         }
 
-        // 4. Succès
         Helpers::notification('success', "Le client a bien été ajouté !");
         Helpers::redirect("/clients");
     }

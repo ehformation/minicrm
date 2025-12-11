@@ -1,27 +1,26 @@
 <?php
-
-function getNotesByClientId($client_id){
-    $pdo = getPDO();
-    $query = $pdo->prepare("SELECT * FROM client_notes WHERE client_id = ? ORDER BY created_at DESC");
-    $query->execute([$client_id]);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function insertNoteToBDD($data){
-    $pdo = getPDO();
-
-    $query = $pdo->prepare("INSERT INTO client_notes (client_id, contenu, created_at)
-                           VALUES (?, ?, NOW())");
-    
-    return $query->execute([
-        $data['client_id'],
-        $data['contenu'],
-    ]);
-}
-
-function deleteNoteToBDD($id)
+class NoteModel extends Database
 {
-    $pdo = getPDO();
-    $query = $pdo->prepare("DELETE FROM client_notes WHERE id = ?");
-    return $query->execute([$id]);
+    protected $table = "client_notes";
+
+    public function store($data){
+        return $this->query(
+            "INSERT INTO {$this->table} (client_id, contenu, created_at)
+             VALUES (?, ?, NOW())",
+            [
+                $data['client_id'],
+                $data['contenu'],
+            ]
+        );
+    }
+
+    public function delete($id)
+    {
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
+    function getByClientId($client_id){
+        $query = $this->query("SELECT * FROM {$this->table} WHERE client_id = ?", [$id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
