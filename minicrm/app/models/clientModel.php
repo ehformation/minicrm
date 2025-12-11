@@ -1,62 +1,55 @@
 <?php
 
-// function getClientsFromDB(){
-//     $pdo = getPDO();
-//     $query = $pdo->query("SELECT * FROM clients ORDER BY updated_at DESC");
-//     return $query->fetchAll(PDO::FETCH_ASSOC);
-// }
+class ClientModel extends Database
+{
+    protected $table = "clients";
 
-// function getClientByIdFromDB($id){
-//     $pdo = getPDO();
-//     $query = $pdo->prepare("SELECT * FROM clients WHERE id = ?");
-//     $query->execute([$id]);
-//     return $query->fetch(PDO::FETCH_ASSOC);
-// }
+    public function getById($id)
+    {
+        $stmt = $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-// function insertClientToBDD($data){
-//     $pdo = getPDO();
+    public function getAll()
+    {
+        $stmt = $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-//     $query = $pdo->prepare("INSERT INTO clients (nom, email, tel, statut, notes, created_at, updated_at)
-//                            VALUES (?, ?, ?, ?, ?, NOW(), NOW())");
-    
-//     return $query->execute([
-//         $data['nom'],
-//         $data['email'],
-//         $data['tel'],
-//         $data['statut'],
-//         $data['notes']
-//     ]);
-// }
+    public function insert($data)
+    {
+        return $this->query(
+            "INSERT INTO {$this->table} (nom, email, tel, statut, notes, created_at, updated_at)
+             VALUES (?, ?, ?, ?, ?, NOW(), NOW())",
+            [
+                $data['nom'],
+                $data['email'],
+                $data['tel'],
+                $data['statut'],
+                $data['notes']
+            ]
+        );
+    }
 
-// function deleteClientToBDD($id)
-// {
-//     $pdo = getPDO();
-//     $query = $pdo->prepare("DELETE FROM clients WHERE id = ?");
-//     return $query->execute([$id]);
-// }
+    public function update($id, $data)
+    {
+        return $this->query(
+            "UPDATE {$this->table}
+             SET nom = ?, email = ?, tel = ?, statut = ?, notes = ?, updated_at = NOW()
+             WHERE id = ?",
+            [
+                $data['nom'],
+                $data['email'],
+                $data['tel'],
+                $data['statut'],
+                $data['notes'],
+                $id
+            ]
+        );
+    }
 
-// function updateClientToBDD($data){
-       
-//     $pdo = getPDO();
-//     $query = $pdo->prepare("
-//         UPDATE clients 
-//         SET nom = ?, email = ?, tel = ?, statut = ?, notes = ?, updated_at = NOW()
-//         WHERE id = ?
-//     ");
-
-//     return $query->execute([
-//         $data['nom'],
-//         $data['email'],
-//         $data['tel'],
-//         $data['statut'],
-//         $data['notes'],
-//         $data['client_id']
-//     ]);
-// }
-
-class ClientModel extends Database{
-
-    public function getAll() {
-        return $this->query("SELECT * FROM clients ORDER BY updated_at DESC")->fetchAll();
+    public function delete($id)
+    {
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
     }
 }

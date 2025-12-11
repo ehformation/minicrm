@@ -8,7 +8,7 @@ function storeNote() {
 
     displayError($errors, "/clients/edit-form");
 
-    $path = "/clients/show?id=" . $_POST['client_id'];
+    $path = "/clients/show/" . $_POST['client_id'];
 
     if(!insertNoteToBDD($_POST)){
         notification('error', 'Une erreur est survenue');
@@ -29,7 +29,7 @@ function deleteNote() {
 
     $id = $_GET["id"];
     $client_id = $_GET["client_id"];
-    $path = "/clients/show?id=$client_id";
+    $path = "/clients/show/$client_id";
 
     if(!deleteNoteToBDD($id)){
         notification('error', 'Une erreur est survenue');

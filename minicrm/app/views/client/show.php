@@ -44,7 +44,7 @@
                             <?= htmlspecialchars($note['contenu']) ?>
                         </div>
                         <div class="text-sm text-red-500 mb-1">
-                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= $helpers->url("/notes/delete?id=" . $note['id'] . "&client_id=" . $client['id']) ?>">Supprimer</a> 
+                           <a onclick="return confirm('Supprimer la note de ce client ? Cette action est irréversible.');" href="<?= $helpers->url("/notes/delete/" . $note['id'] . "&client_id=" . $client['id']) ?>">Supprimer</a> 
                         </div>
                     </li>
                 <?php endforeach; ?>

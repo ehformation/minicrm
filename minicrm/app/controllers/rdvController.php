@@ -9,7 +9,7 @@ function storeRDV() {
 
     displayError($errors, "/clients");
 
-    $path = "/clients/show?id=" . $_POST['client_id'];
+    $path = "/clients/show/" . $_POST['client_id'];
     
     if (rdvExists($_POST['date'])) {
         notification('error', 'Ce créneau est déjà réservé.');

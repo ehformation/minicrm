@@ -59,3 +59,9 @@
 // }
 
 $router->get("/clients", [ClientController::class, "index"]);
+$router->get("/clients/show/{id}", [ClientController::class, "show"]);
+$router->get("/clients/create-form", [ClientController::class, "create"]);
+$router->get("/clients/store", [ClientController::class, "store"]);
+$router->get("/clients/edit-form/{id}", [ClientController::class, "edit"]);
+$router->get("/clients/update/{id}", [ClientController::class, "update"]);
+$router->get("/clients/delete/{id}", [ClientController::class, "delete"]);
